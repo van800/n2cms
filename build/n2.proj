@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+
+	<!-- GENERAL -->
+
+	<Target Name="Echo">
+		<Message Text="Hello from $(MSBuildProjectDirectory)" />
+	</Target>
+
+	<PropertyGroup>
+		<RootFolder>$(MSBuildProjectDirectory)\..</RootFolder>
+		<LibFolder>$(RootFolder)\lib</LibFolder>
+		<DocFolder>$(RootFolder)\docs</DocFolder>
+		<BuildFolder>$(RootFolder)\build</BuildFolder>
+		<SnippetsFolder>$(RootFolder)\snippets</SnippetsFolder>
+
+		<SrcFolder>$(RootFolder)\src</SrcFolder>
+		<WebFolder>$(SrcFolder)\WebForms\WebFormsTemplates</WebFolder>
+		<ManagementFolder>$(SrcFolder)\Mvc\MvcTemplates\</ManagementFolder>
+		<EditFolder>$(RootFolder)\src\Mvc\MvcTemplates\N2</EditFolder>
+
+		<Examples-Folder>$(RootFolder)\examples</Examples-Folder>
+
+		<Version Condition="'$(Version)' == ''">2.4</Version>
+		<DeployPrefix>n2cms_$(Version)_</DeployPrefix>
+		<DeployFolder>$(RootFolder)\output</DeployFolder>
+		<TempFolder>$(RootFolder)\output\temp\</TempFolder>
+
+		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+		<Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
+		<Platform Condition="'$(Platform)' == 'X64'">Any CPU</Platform>
+		<Platform Condition="'$(Platform)' == 'MCD'">Any CPU</Platform>
+		<Platform Condition="'$(Platform)' == 'BPC'">Any CPU</Platform>
+		
+		<MSBuildCommunityTasksPath>$(RootFolder)\lib</MSBuildCommunityTasksPath>
+	</PropertyGroup>
+
+	<Import Project="$(RootFolder)\build\lib\MSBuild.Community.Tasks.targets"/>
+	<Import Project="n2.framework.targets"/>
+	<Import Project="n2.templates.webforms.targets"/>
+	<Import Project="n2.templates.mvc.targets"/>
+	<Import Project="n2.dinamico.targets"/>
+	<Import Project="n2.examples.targets"/>
+	<Import Project="n2.sources.targets"/>
+
+	<Target Name="Build">
+		<Message Text="Building Everything"/>
+
+		<CallTarget Targets="Framework-Build"/>
+		<CallTarget Targets="Examples-Build"/>
+	</Target>
+	
+	<Target Name="SanityCheck">
+		<ItemGroup>
+			<_SolutionFiles Include="$(RootFolder)\**\*.sln" />
+		</ItemGroup>
+
+		<MSBuild Projects="@(_SolutionFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+	</Target>
+
+	<!-- Clean -->
+
+	<Target Name="Clean" DependsOnTargets="Source-Clean;Examples-Clean;">
+		<MSBuild Projects="$(RootFolder)\N2.Everything.sln" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(RootFolder)\N2.Everything.sln" Targets="Clean" Properties="Configuration=Release" />
+	</Target>
+
+	<!-- Deploy -->
+
+	<Target Name="Deploy" DependsOnTargets="Clean-Output;Framework-Deploy;Templates-Deploy;Templates-Mvc-Deploy;Dinamico-Deploy;Examples-Deploy;Source-Deploy">
+		<Message Text="Deployed Everything"/>
+		<RemoveDir Directories="$(DeployFolder)\temp" ContinueOnError="true" />
+	</Target>
+
+	<!-- Zip -->
+
+	<Target Name="ZipDeploy" DependsOnTargets="Deploy;Zip">
+		<ItemGroup>
+			<_zips Include="$(DeployFolder)\*.zip" />
+		</ItemGroup>
+		<Message Text="Deployed: %(_zips.filename)%(_zips.extension)" />
+	</Target>
+
+	<Target Name="Zip" DependsOnTargets="Framework-Zip;Source-Zip;Templates-Zip;Templates-Mvc-Zip;Dinamico-Zip;Examples-Zip">
+		<Message Text="Zipped Everything"/>
+	</Target>
+
+	<!-- Clean sources -->
+
+	<Target Name="PrepareDependencies" DependsOnTargets="Framework-PrepareDependencies;Examples-PrepareDependencies;Source-PrepareDependencies">
+	</Target>
+
+	<Target Name="Clean-Output">
+		<RemoveDir Directories="$(DeployFolder)" ContinueOnError="true"/>
+	</Target>
+
+	<Target Name="Test" DependsOnTargets="Framework-Build">
+    <Message Text="Configuration: $(Configuration)"/>
+    <Message Text="Platform: $(Platform)"/>
+		<ItemGroup>
+			<AssembliesToTest Include="$(SrcFolder)\Framework\Tests\bin\$(Configuration)\*.Tests.dll;"/>
+			<AssembliesToTest Include="$(SrcFolder)\Framework\Management.Tests\bin\$(Configuration)\N2.Management.Tests.dll;"/>
+			<AssembliesToTest Include="$(SrcFolder)\Framework\Extensions.Tests\bin\$(Configuration)\N2.Extensions.Tests.dll;"/>
+			<AssembliesToTest Include="$(SrcFolder)\Mvc\MvcTemplates.Tests\bin\$(Configuration)\N2.Templates.Mvc.Tests.dll;"/>
+			<AssembliesToTest Include="$(SrcFolder)\WebForms\WebFormsTemplates.Tests\bin\$(Configuration)\N2.Templates.Tests.dll;"/>
+		</ItemGroup>
+		<PropertyGroup>
+			<Exe></Exe>
+		</PropertyGroup>
+		<Message Text="$(RootFolder)\lib\nunit-console-x86.exe %(AssembliesToTest.FullPath)" />
+		<Exec Command="$(RootFolder)\lib\nunit-console-x86.exe %(AssembliesToTest.FullPath)" />
+	</Target>
+
+
+
+
+
+
+
+
+	<!-- IN PROGRESS -->
+
+	<PropertyGroup>
+		<FrameworkOutDir>$(RootFolder)\Output\Framework\</FrameworkOutDir>
+		<WebFormsOutDir>$(RootFolder)\Output\Templates\WebForms\</WebFormsOutDir>
+		<MvcOutDir>$(RootFolder)\Output\Templates\Mvc\</MvcOutDir>
+	</PropertyGroup>
+	<ItemGroup>
+		<Framework-Dependencies Include="$(LibFolder)\**\System.Data.SQLite.dll;
+																		 $(LibFolder)\**\NHibernate*.dll;
+																		 $(LibFolder)\**\Castle*.dll;
+																		 $(LibFolder)\**\log4net.dll;" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(SqlCe)' != ''">
+		<Framework-Dependencies Include="$(LibFolder)\**\System.Data.SqlServerCe.dll;
+																		 $(LibFolder)\**\sqlceme40.dll;" />
+	</ItemGroup>
+
+	<!-- Create item groups used for copy dependencies for examples -->
+	<Target Name="Define-Framework" DependsOnTargets="Deploy-Framework">
+		<ItemGroup>
+			<FrameworkFiles Include="$(FrameworkOutDir)_PublishedWebsites\N2.Management\**\*" 
+											Exclude="$(FrameworkOutDir)_PublishedWebsites\N2.Management\web.config"/>
+			<FrameworkBinaries Include="$(FrameworkOutDir)\*.dll;" />
+		</ItemGroup>
+	</Target>
+	<Target Name="Define-Templates-WebForms" DependsOnTargets="Define-Framework;Deploy-Templates-WebForms">
+		<ItemGroup>
+			<WebFormsFiles Include="$(WebFormsOutDir)_PublishedWebsites\N2.Templates\**\*" />
+			<WebFormsFiles Include="$(WebFormsOutDir)_PublishedWebsites\AddonCatalog\**\*" />
+			<WebFormsFiles Include="$(WebFormsOutDir)_PublishedWebsites\Tagging\**\*" />
+			<WebFormsFiles Include="$(WebFormsOutDir)_PublishedWebsites\Wiki\**\*" />
+			<WebFormsBinaries Include="$(WebFormsOutDir)\*.dll" />
+		</ItemGroup>
+	</Target>
+	<Target Name="Define-Templates-Mvc" DependsOnTargets="Define-Framework;Deploy-Templates-Mvc">
+		<ItemGroup>
+			<WebFormsFiles Include="$(MvcOutDir)_PublishedWebsites\N2.Templates.Mvc\**\*" />
+			<WebFormsBinaries Include="$(MvcOutDir)\*.dll" />
+		</ItemGroup>
+	</Target>
+
+	<!-- Deploy sources to output folder -->
+	<Target Name="Deploy-Framework">
+		<MSBuild Projects="$(SrcFolder)\N2.Sources.sln" RebaseOutputs="true" 
+						 Properties="OutDir=$(FrameworkOutDir);Configuration=ReleaseFramework;Platform=$(Platform)" />
+		<Copy SourceFiles="@(Framework-Dependencies)" DestinationFolder="$(FrameworkOutDir)" />
+	</Target>
+	<Target Name="Deploy-Templates-WebForms">
+		<MSBuild Projects="$(SrcFolder)\N2.Sources.sln" RebaseOutputs="true"
+						 Properties="OutDir=$(WebFormsOutDir);Configuration=ReleaseWebForms;Platform=$(Platform)" />
+	</Target>
+	<Target Name="Deploy-Templates-Mvc">
+		<MSBuild Projects="$(SrcFolder)\N2.Sources.sln" RebaseOutputs="true"
+						 Properties="OutDir=$(MvcOutDir);Configuration=ReleaseMvc;Platform=$(Platform)" />
+	</Target>
+
+	<Target Name="Prepare-Development">
+		<ItemGroup>
+			<TemplateFiles Include="$(BuildFolder)\templates\**\*"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(TemplateFiles)" DestinationFolder="$(SrcFolder)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!--<Target Name="X">
+		<MSBuild Projects="n2.publish.targets"
+						 Targets="PublishAllFiles"
+						 Properties="ProjectDir=$(SrcFolder)\N2.Templates.Mvc\;
+												 ProjectFile=N2.Templates.Mvc.csproj;
+												 OutputPath=$(MvcOutDir)\Project\"
+						 >
+		</MSBuild>
+	</Target>-->
+
+	<Target Name="Deploy-OpenAll">
+		<ItemGroup>
+			<openLine Include="$(DeployPrefix)Dinamico_Mvc\N2CMS\Dinamico.csproj" />
+			<openLine Include="pause" />
+			<openLine Include="$(DeployPrefix)Example_CS\CSharp_Example.sln" />
+			<openLine Include="pause" />
+			<openLine Include="$(DeployPrefix)Example_Mvc\Mvc_Example.sln" />
+			<openLine Include="pause" />
+			<openLine Include="$(DeployPrefix)Example_VB\VisualBasic_Example.sln" />
+			<openLine Include="pause" />
+			<openLine Include="cd /d $(DeployPrefix)Source\build" />
+			<openLine Include="cmd /c build.bat /target:PrepareDependencies" />
+			<openLine Include="cd ..\.." />
+			<openLine Include="$(DeployPrefix)Source\N2.Everything.sln" />
+			<openLine Include="pause" />
+			<openLine Include="copy $(DeployPrefix)Templates_Mvc\Libraries\System.Data.SQLite.dll $(DeployPrefix)Templates_Mvc\N2CMS\bin\" />
+			<openLine Include="$(DeployPrefix)Templates_Mvc\N2CMS\N2.Templates.Mvc.sln" />
+			<openLine Include="pause" />
+			<openLine Include="copy $(DeployPrefix)Templates_WebForms\Libraries\System.Data.SQLite.dll $(DeployPrefix)Templates_WebForms\N2CMS\bin\" />
+			<openLine Include="$(DeployPrefix)Templates_WebForms\N2CMS\N2.Templates.sln" />
+		</ItemGroup>
+		<WriteLinesToFile Lines="@(openLine)" File="$(DeployFolder)\OpenAll.bat" Overwrite="true" />
+	</Target>
+
+	<Target Name="Deploy-BuildAll">
+		<ItemGroup>
+			<buildLine Include="msbuild $(DeployPrefix)Dinamico_Mvc\N2CMS\Dinamico.csproj" />
+			<buildLine Include="msbuild $(DeployPrefix)Example_CS\CSharp_Example.sln" />
+			<buildLine Include="msbuild $(DeployPrefix)Example_Mvc\Mvc_Example.sln" />
+			<buildLine Include="msbuild $(DeployPrefix)Example_VB\VisualBasic_Example.sln" />
+			<buildLine Include="cd /d $(DeployPrefix)Source\build" />
+			<buildLine Include="cmd /c build.bat /target:PrepareDependencies" />
+			<buildLine Include="cd ..\.." />
+			<buildLine Include="msbuild $(DeployPrefix)Source\N2.Everything.sln" />
+			<buildLine Include="copy $(DeployPrefix)Templates_Mvc\Libraries\System.Data.SQLite.dll $(DeployPrefix)Templates_Mvc\N2CMS\bin\" />
+			<buildLine Include="msbuild $(DeployPrefix)Templates_Mvc\N2CMS\N2.Templates.Mvc.sln" />
+			<buildLine Include="copy $(DeployPrefix)Templates_WebForms\Libraries\System.Data.SQLite.dll $(DeployPrefix)Templates_WebForms\N2CMS\bin\" />
+			<buildLine Include="msbuild $(DeployPrefix)Templates_WebForms\N2CMS\N2.Templates.sln" />
+		</ItemGroup>
+		<WriteLinesToFile Lines="@(buildLine)" File="$(DeployFolder)\BuildAll.bat" Overwrite="true" />
+	</Target>
+
+	<Target Name="Publish-NuGet" DependsOnTargets="Framework-NuGet;Library-NuGet;SQLite-NuGet;Razor-NuGet;Dinamico-NuGet">
+		<ItemGroup>
+			<nugetPackages Include="$(DeployFolder)\*.nupkg" />
+		</ItemGroup>
+		<!--<Message Text="$(BuildFolder)\lib\NuGet.exe Push %(nugetPackages.Identity)" />-->
+		<Exec Command="$(BuildFolder)\lib\NuGet.exe Push %(nugetPackages.Identity)" />
+	</Target>
+
+</Project>

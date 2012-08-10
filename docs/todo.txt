@@ -1,0 +1,434 @@
+- Weird discriminator (discussions/358438)
+- Translate close (discussions/356447)
+- security exception discussions/354170
+- non-persistent items searchable
+- placeholder
+- required [EditableMediaUpload] (discussions/346532)
+- windsor 3 - http://n2cms.codeplex.com/discussions/340758
+- permission map issues http://n2cms.codeplex.com/workitem/32291
+- dbfs in virtual dir (discussions/287370)
+- Pushstate
+- PdfBox http://pdfbox.apache.org/userguide/dot_net.html (discussions/285609)
+- ContentState after installation (discussions/285006)
+- Document security (discussions/282764)
+- Bulk adding from rss (discussions/272297)
+- restrict page deletion (discussions/282410)
+- .aspx on MVC (discussions/281400)
+- zone writer (prepend, append, wrap, separate)
+discussions/279124
+http://dl.dropbox.com/u/18069810/SafeUrlEnforcer.cs
+- Multiple item editor (discussions/273083)
+- Take a look at misc utils (discussions/277160)
+- Container nodes without url segment (discussions/277009)
+- Investigate memory usage for many small sites (discussions/276419)
+- Make content route not route before up and running
+- Fix problem with cascade saving of proxied items (discussions/276267)
+- Module guidance (discussions/273235)
+- DefaultValue on programmatically added editables (discussions/273892)
+- Updated minimal MVC example to MVC3 (discussions/273372)
+- Antipspam on form (discussions/273271)
+- Change "selected" query string (discussions/83451)
+- Date time picker time warning missing (discussions/272907)
+- database file system chunking
+- database file system event broker connection
+- Closed session when checking installation status (discussions/267048)
+- Restrict upload folders shown for EditableImage (discussions/268170)
+- languages associated to sites (discussions/264798)
+- linq default values (discussions/250998)
+- anti-spam and required on forms (discussions/273271)
+- select query strings breaks with url scan discussions/266434
+- recursive quickener
+- nhibernate method not found (discussions/265951)
+- reproduce lucene problems (discussions/262292) - fix fist-time installation lucene error leaving lock
+- allowed zones in dinamico view templates (discussions/263700)
+- master page in themes directory
+- save&preview and editablechildren (workitem/30541)
+- nuget issues http://n2cms.codeplex.com/discussions/260635
+- contenttype from model discussions/259496
+- extend user screen (discussions/257790)
+- document security (http://n2cms.codeplex.com/discussions/257790)
+- tokens
+	- image carousel
+	- tracking link
+	- facebook like
+	- twitter
+	- youtube
+- index template replaces default
+- static parts
+- fix wiki (ThreadId=243022)
+- property interception avoid proceeding unecessarily
+- show path in screens
+- modal file selectors
+- change to ordinal string comparisons
+- SQL timeout exception (ThreadId=234907)
+- Add no-sql support
+- IOrderBy.Detail does sorting (ThreadId=234194)
+- comment moderation (ThreadId=232279)
+- alt on editableimage (ThreadId=232342)
+- relocate virtual directory (ThreadId=232683)
+- translation fallback (ThreadId=230288)
+- MVC
+	- Remove master page code behind
+	- reduce number of parts (e.g. top)
+	- Add all images in folder to gallery
+- external links ThreadId=227538
+- fixed pages (undeletable pages with known address)
+	- data templates (ThreadId=226067)
+- password reset, ThreadId=217293
+- start page caching, ThreadId=224336
+- content staging, workflow ThreadId=214629
+- share master page ThreadId=222496
+- transaction deadlock ThreadId=222604
+- fix tagging: ThreadId=222444
+- include sites in error reports (wi=27515)
+- consider language (ThreadId=219929)
+- update integrating documentation (ThreadId=221503)
+- custom session factory (ThreadId=221116)
+- search pagination (ThreadId=217828)
+- check service container discrepancies (ThreadId=216762)
+- understand existingResponse=PassThrough (ThreadId=217297)
+- implement password reset (ThreadId=217293)
+- consider tagging in mvc (ThreadId=216968)
+- themes for deleted items (ThreadId=216799)
+- culture+top part (ThreadId=210729)
+- personas
+- channels
+
+v2
+- globalization changes http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=212056&ProjectName=n2cms
+- .net4 request validation http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=211901
+- .net4 routing http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=211877
+- mvc contrib pagination http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=69809
+- fix preview version issue
+- taxonomy
+- mvc templates
+	- new skin
+		- 960 grid?
+	- deeper page structures
+	- fancy drop down menu
+	- globalization issue?
+	- areas (mvc2)
+- command factory
+	- delete
+	- move
+	- copy
+	- ?
+- http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=81825
+- http://n2cms.codeplex.com/WorkItem/View.aspx?WorkItemId=26023
+- default container (put all editables in one container)
+- interfaces concept
+	- management
+	- browsing
+	- append nodes
+- group controls in organize panel
+
+v2.1+
+- http://n2cms.codeplex.com/Thread/View.aspx?ThreadId=210129 (editablechildren)
+- auto-parts
+- support for list items
+	- scenarios: site events, news, blog posts
+	- properties: id, type, title, savedBy, details, detailCollections
+	- to consider: created?, published?, updated?, expires?, zoneName?, state?, ancestralTrail?, versionOf?, parent?, children?, authorization?
+	- table per concrete class
+	- urls: /parent/[type]/id, /parent/[type]/name?
+- home page
+	- wizards
+	- site events
+	- analytics (stats)
+	- rss
+	- injectable
+- list referencing items issue
+- metablog support
+- msdeploy support
+- remove path from adapters
+- lock name on published items
+- mvc in sub-app with no ending slash
+- content aspects (ContentPart, children->pages+parts, n2parts)
+- refactor state to use new concepts
+	- TreePosition
+		- MoveToLocation
+	- ItemBinder
+		- UpdateObject
+		- UpdateEditors
+	- Command
+		- Publish
+		- CreateDraft
+	- move to trash -> deleted state
+- update data model
+	- reference to start page
+	- valid until
+	- changed permissions flags
+	- split pages and parts
+	- remove authorized roles
+	- sort order on details
+- make all objects editable
+- deprecate and replace mail stuff
+- "hidden" non-parts pages
+- track "EditableLinks"
+- track external links and "trackbacks"
+- item templates
+- "OnCreated"
+- "default folder"
+	- upload file
+	- select file
+- introduce IStartPage and move some logic to the content items
+- restrict children
+- filter plugins
+- templates adapter
+- drag nested items in ie
+- XML Store instead of DB
+- eager load item's child collections
+- lock toolbar when editing
+- "controller" http://www.codeplex.com/n2/Thread/View.aspx?ThreadId=42498
+- mysql problem
+- tests for multiple hosts url rewriting
+- make it possible to change edit page
+- fix IAutoStart
+- cleanup many versions
+- rating
+- delete restrictions
+- wiki
+	- discuss
+	- categories
+	- nested articles
+	- track back links
+	- code formatting
+	- indent
+		- :
+		- ::
+		- :::
+	- images
+		- resize
+		- Floating to the right side of the page using the frame attribute and a caption: [[Image:wiki.png|frame|Wikipedia Encyclopedia]]
+		- Floating to the right side of the page using the thumb attribute and a caption: [[Image:wiki.png|thumb|Wikipedia Encyclopedia]]
+		- Floating to the right side of the page without a caption: [[Image:wiki.png|right|Wikipedia Encyclopedia]]
+		- [[Image:wiki.png|30 px]]
+		- Linking directly to the description page of an image: [[:Image:wiki.png]]
+		- Linking directly to an image without displaying it: [[:media:wiki.png|Image of the jigsaw globe logo]]
+	- <!-- comment here -->
+	- __TOC__ 
+	- __NOTOC__ 
+	- Variables: 
+		{{CURRENTWEEK}},{{CURRENTDOW}}, {{CURRENTMONTH}}, {{CURRENTMONTHNAME}}, {{CURRENTDAY}}, {{CURRENTDAYNAME}}, {{CURRENTYEAR}}, {{CURRENTTIME}}, {{NUMBEROFARTICLES}}, {{NUMBEROFUSERS}}, {{NAMESPACE}}, {{REVISIONID}}
+		{{localurl:pagename}} 	/wiki/Pagename
+		{{localurl:Wikipedia:Sandbox|action=edit}} 	/w/index.php?title=Wikipedia:Sandbox&action=edit
+		{{fullurl:pagename}} 	http://en.wikipedia.org/wiki/Pagename
+		{{fullurl:pagename|query_string}} 	http://en.wikipedia.org/w/index.php?title=Pagename&query_string
+		{{SERVER}} 	http://en.wikipedia.org
+		{{ns:1...~}} 	Talk
+		{{SITENAME}} 	Wikipedia
+	- language codes
+	- single tilde
+	- Automatically hide stuff in parentheses: [[kingdom (biology)|]].
+		- Automatically hide namespace: [[Wikipedia:Village Pump|]].
+		- Or both: [[Wikipedia: Manual of Style (headings)|]]
+		- But not: [[Wikipedia: Manual of Style#Links|]]
+	- Endings blended into the links: San Francisco also has [[public transport]]ation.
+- idispatcher & content controller -> N2.dll
+- circuitbreaker
+- queue of t
+- handle not-mapped types
+- allow non root-path to act as start page
+- dashboard
+- restrictparents: NewRestrictionAttribute
+- smart format
+- decouple item definition and editing from n2.contentitem
+- Parts: Throw friendly exception when page isn't found
+- move sites initialization to after context.instance is set
+- implement INode for edit mode integration
+- allow other than content items to be edited
+- implement security context
+- configure away modules
+- fix content item injection
+- diff feature
+- better validation (jquery?, nhibernate.validation)
+- google analytics plugin
+- templates: categories
+- nhibernate.search
+- action based authorization
+- pluggable workflow steps
+	- before: check name already exists
+	- handle upon user input: 
+		- allow change duplicate name
+		- warn inbound links
+		- warn translated pages
+	- after: warnings, notifications: e.g. warn that translated pages were also affected
+- fixer for obsolete content
+- change url rewriting strategy
+- import: handle unmapped types
+- webdav
+- msi installer
+- update sandcastle documentation
+
+TODO:
+- documentation & programmability
+	- more snippets & templates
+	- namespace documentation
+	- tips & tricks
+		- change the public url extension
+		- recursive properties
+
+- engine
+	- Man kan inte gruppera contentitems i edit-läget?
+	- removed dependency on global resource stuff for edit mode toolbar
+	- do something about right-click menu not closing during click in whole window frame
+	- warning that checking all security options means all have access
+	- consider interface for root and start pages
+	- isearchable
+	- rule based integrity
+	- enable different persistence managers/containers
+	- change logging mechanism (empty logger)
+	- soft configuration storage
+		- per user
+		- per session?
+		- per request?
+		- per site
+	- improve register class
+		- create container control
+		- fluent api
+	- separate site provider from url parsing
+	- create an abstraction for nodes in edit mode
+	- edit tree abstraction
+		- tree item interface
+		- non-item elements
+		- more than 1 persister
+	- relations/links
+		- figure if relations should be changed to new items on copy
+	- xml writer/reader
+		- filters?
+	- improve objectdatasources
+		- filters
+		- finder?
+	- overridable details (recursive)
+		- figure out a way to include recursive/dynamic details in the engine
+	- configuration
+		- set up definitions & constraints
+	- implement event broker functionality
+	- put web stuff in a separate assembly
+	- finder 2.0
+		- optimize queries
+	- something mvc:ish
+	- static content export
+	- installation: display default content packages
+	- security context
+
+- templates
+	- scrum project
+		- projects
+		- project backlog
+		- sprint
+		- task
+			- move task to sprint
+			- move task between zones in a sprint
+			- drag&drop speed
+		- subtask
+		- create sprint wizard
+		- create task wizard
+		- create many tasks wizard
+		- create project wizard
+	- page template system
+	- framework
+		- paging
+	- surveys
+	- blog
+		- comments
+		- captcha
+	- forum
+	- guest book
+	- bug reporting
+	- newsletter
+	- layout
+		- another layout
+	- lucene search
+	- link page
+	- xsl template
+		- atom source
+		- rss source
+	- facebook integration
+	- registration form
+	- google maps integration
+
+- modules
+	- linktracker & icons
+	- improve on export/import options 
+		- filters
+		- replace existing items
+	- free text search plugin (lucene)
+	- improve link-checker plugin
+	- statistics
+		- live statistics
+		- historical
+	- add castle ijob
+	- monorail/ms mvc integration
+	- static html site export
+	- check broken links
+
+- edit mode
+	- file manager
+		- hide buttons while uploading etc.
+		- hide buttons instead of moving off but still taking place
+		- focus window when it's hidden behind
+		- upload without opening window
+		- quicker file selection tools
+	- save & publish, save version, save and stay here
+	- put info in rel tag
+	- shorten id
+	- templates
+	- ajax hover info
+	- improve the itemlisteditor
+		- don't load fields until click
+	- reversable actions (undo)
+		- iiaction
+		- keeps memory per session?
+	- install update instruction for web.config update
+	- closable fieldset
+	- show the current action as selected
+	- improve the tree navigation
+		- lazy(ajax)load deep items in tree
+	- file manager
+		- select and expand to currently selected file
+		- n2 file system
+		- file upload event
+	- fieldset for page types
+	- swedish localization
+	- help
+
+- versions
+	- show diff
+- tests
+	- watin
+	- clear session
+- mono
+	- look into it
+	- expression builders
+	- url rewriting
+	- http modules
+
+- Någon form av translate-funktion, där man definierar en strängs
+översättnings i de språk som är aktuella för siten. Administration via
+webgränssnitt. I OOiS använder vi detta dels för språköversättning på
+knappar och dylikt och dels använder vi det likt episervers dynamic
+properties.
+- Skapa default-värden för fliken SEO, där man kan definiera upp olika
+uppsättningar som man sedan kan välja per sida eller skriva in custom om
+man hellre vill det. Skulle också vilja se en utökning av fälten så man
+kan ställa in t.ex. author, robots osv.
+- Möjlighet att styra dels vilka roller/användare som får läsa en sida,
+och dels vem som får redigera sidan.
+- Utökad filhantering med möjlighet att flytta filer, ange
+meta-information för sökningar, och rättighetsstyra filer och mappar.
+- Sortering internt av en nods childs, förslagsvis via drag-drop
+istället för episervers index-nummer.
+- Publicera/avpublicera en sida och hela dess understruktur.
+- Definiera upp globala properties som gäller för en sida. T.ex. "Hide
+in menus", "Hide in search", "Hide if no access" osv som man kan kryssa
+i på sidnivå. Typ som du har under "Advanced"... Visible, Show Title osv.
+- På sidnivå kunna sätta att en icke default login-sida ska visas om
+användaren inte har access.
+- Cache-inställningar på sidnivå för att bestämma om sidan får cachas
+och hur länge. Skulle även vilja ha en generell objekt-cache som man kan
+använda i kod för att minnescacha t.ex. resultat från en funktion, delar
+av en sida osv.
+- Ett generellt ställe att lägga in custom plugins (typ actionwindow i
+epi) där man kan slänga in funktioner som prenumeranthantering,
+bannerhantering osv.

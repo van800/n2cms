@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MSDeploy.iisApp>
+  <iisapp path="N2CMS" />
+
+	<dbfullsql path="install.sql" />
+
+	<!--<dbmysql path="install.mysql"
+					 commandDelimiter="//"
+					 removeCommandDelimiter="true" />-->
+
+	<setAcl path="N2CMS/App_Data" setAclAccess="Modify" />
+  <setAcl path="N2CMS/Upload" setAclAccess="Modify" />
+
+</MSDeploy.iisApp>

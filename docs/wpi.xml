@@ -1,0 +1,154 @@
+﻿<feed xmlns="http://www.w3.org/2005/Atom">
+	<webpiFile version="3.0.0.0" />
+
+	<title>N2 CMS Releases</title>
+	<link href="http://n2cms.com/wpi.xml" />
+	<updated>2010-10-11T13:00:00Z</updated>
+	<author>
+		<name>N2 CMS</name>
+
+		<uri>http://n2cms.com/</uri>
+	</author>
+	<id>http://n2cms.com/wpi.xml</id>
+
+
+
+	<entry type="application">
+		<productId>N2CMSMVCTemplates211</productId>
+		<title>N2 CMS 2.1.1 ASP.NET MVC Templates Pack</title>
+		<version>2.1.1 (mvc)</version>
+
+		<summary>Templates Pack using ASP.NET MVC and the N2 CMS Framework.</summary>
+		<id>http://n2cms.codeplex.com/releases/view/58473#DownloadId=193225</id>
+		<updated>2010-10-10T13:00:00Z</updated>
+		<published>2010-10-10T13:00:00Z</published>
+		<longSummary>
+			Support for auto-implemented properties ({get;set;}, based on contribution by And Poulsen).
+			File manager improvements (multiple file upload, resize images to fit).
+			MVC templates improvements (new image gallery, infinite scroll paging on news).
+			Content templates
+			A bunch of bugs are gone.
+		</longSummary>
+
+		<productFamily>Releases</productFamily>
+
+		<link href="http://n2cms.codeplex.com/releases/view/58473#DownloadId=193225" />
+
+		<author>
+			<name>N2 CMS</name>
+			<uri>http://n2cms.com/</uri>
+		</author>
+
+		<images>
+			<icon>http://www.microsoft.com/web/handlers/webpi.ashx?command=getimage&amp;guid=b11eea8e-617e-42d7-b5cc-df329f640856</icon>
+		</images>
+
+		<dependency>
+			<productId>NETFramework35</productId>
+		</dependency>
+
+		<installers>
+			<installer>
+				<id>1</id>
+				<languageId>en</languageId>
+				<installerFile>
+					<fileSize>7221</fileSize>
+					<installerURL>http://n2cms.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=198510</installerURL>
+
+					<sha1>9E0A81E3FD55E7EB7C8FAF77C4452E7AB7C44F6D</sha1>
+				</installerFile>
+				<helpLink>http://n2cms.codeplex.com/discussions/</helpLink>
+				<msDeploy>
+					<startPage>n2/installation/begin/default.aspx?action=install</startPage>
+				</msDeploy>
+			</installer>
+		</installers>
+
+	</entry>
+
+	<entry type="application">
+		<productId>N2CMSWFTemplates211</productId>
+		<title>N2 CMS 2.1.1 WebForms Templates Pack</title>
+		<version>2.1.1 (wf)</version>
+
+		<summary>Templates Pack using ASP.NET WebForms and the N2 CMS Framework.</summary>
+		<id>http://n2cms.codeplex.com/releases/view/58473#DownloadId=193226</id>
+		<updated>2010-10-10T14:00:00Z</updated>
+		<published>2010-10-10T14:00:00Z</published>
+		<longSummary>
+			Support for auto-implemented properties ({get;set;}, based on contribution by And Poulsen).
+			File manager improvements (multiple file upload, resize images to fit).
+			Content templates
+			A bunch of bugs are gone.
+		</longSummary>
+
+		<productFamily>Releases</productFamily>
+
+		<link href="http://n2cms.codeplex.com/releases/view/58473#DownloadId=193226" />
+
+		<author>
+			<name>N2 CMS</name>
+			<uri>http://n2cms.com/</uri>
+		</author>
+
+		<images>
+			<icon>http://www.microsoft.com/web/handlers/webpi.ashx?command=getimage&amp;guid=b11eea8e-617e-42d7-b5cc-df329f640856</icon>
+		</images>
+
+		<dependency>
+			<productId>NETFramework35</productId>
+		</dependency>
+
+		<installers>
+			<installer>
+				<id>1</id>
+				<languageId>en</languageId>
+				<installerFile>
+					<fileSize>6836</fileSize>
+					<installerURL>http://n2cms.codeplex.com/Project/Download/FileDownload.aspx?DownloadId=198511</installerURL>
+					<sha1>15D2F87CF6F42E5F1258500382737B94D9799EBD</sha1>
+				</installerFile>
+				<helpLink>http://n2cms.codeplex.com/discussions/</helpLink>
+				<msDeploy>
+					<startPage>n2/installation/begin/default.aspx?action=install</startPage>
+				</msDeploy>
+			</installer>
+		</installers>
+	</entry>
+	
+	
+	
+	<tabs>
+		<tab>
+			<pillarTab>
+				<id>AppGalleryTools</id>
+				<name>N2 CMS</name>
+
+				<description>Click "Customize" to select which version to install</description>
+				<pillar>
+					<id>AppGalleryServer</id>
+					<name>All N2 CMS Releases</name>
+					<description>
+						N2 is a lightweight CMS framework. With just a few strokes of your keyboard a wonderful strongly typed model emerges complete with a management UI. You can spend the rest of your day building the best site imaginable.
+					</description>
+					<groupingId>AppGalleryToolsFamilyGrouping</groupingId>
+
+					<recommended>
+						<productId>N2CMSMVCTemplates211</productId>
+					</recommended>
+				</pillar>
+			</pillarTab>
+		</tab>
+	</tabs>
+
+	<groupings>
+		<grouping>
+			<id>AppGalleryToolsFamilyGrouping</id>
+			<attribute>productFamily</attribute>
+			<include>
+				<item>Releases</item>
+			</include>
+
+		</grouping>
+	</groupings>
+</feed>

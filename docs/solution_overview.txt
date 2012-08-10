@@ -1,0 +1,36 @@
+* N2
+This is the core library of the N2 CMS. This alone provides functionality to
+define, store, navigate, query, filter, serialize and edit  content data. The 
+library also helps with integrity and security issues, provides data binding
+utilities and web controls. 
+
+* N2.Management
+This is the edit interface for the N2 CMS. Through this interface non-technical
+editors can edit and manage content items. Parts of the edit functionality is
+organized in optional modules. The N2.Edit project provides interfaces for 
+organizing, navigating, creating, editing, movig, copying, sorting, searching 
+and deleting content. There is also a simple file manager, content import & 
+export, installation interface, user administration, content access rights 
+editor, content versioning interface.
+
+* N2.Extensions
+Integration with ASP.NET MVC and LINQ extensions.
+
+* N2.Security
+Membership and role providers. Stores users as content items.
+
+* N2.Templates
+The templates project is an implementation of the N2 CMS. It can be used either
+as it is, as a starting point or for inspiration when implementing a web site.
+The library project with the same name contains a few basic item definitions, 
+some specialized editable details and a few web controls.
+Interface files for the templates implementation. Event calendar functionality, 
+frequently asked questions functionality, customized form functionality, image 
+gallery, news functionality, poll question functionality, syndication interface 
+files, content search functionality and content syndication functionality.
+
+* N2.Templates.Mvc
+MVC templates contributed by Steve Mason.
+
+* N2.Tests, N2.Extensions.Tests, N2.Management.Tests, N2.Templates.Tests, N2.Templates.Mvc.Tests
+Unit tests for the N2 library.
