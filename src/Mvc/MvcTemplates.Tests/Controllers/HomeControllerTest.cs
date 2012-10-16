@@ -8,6 +8,8 @@ using Rhino.Mocks;
 using N2.Templates.Mvc.Models.Pages;
 using System.Web.Routing;
 using N2.Tests.Fakes;
+using N2.Persistence.NH;
+using N2.Edit.Installation;
 
 namespace N2.Templates.Mvc.Tests.Controllers
 {
