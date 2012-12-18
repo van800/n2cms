@@ -21,7 +21,7 @@
 			</div>
 			<div class="bf">
 				<%=Html.AntiForgeryToken()%>
-				<input value="Login" type="submit" />
+				<input value="<%=GetLocalResourceObject("Login") %>" type="submit" />
 				<%=Html.ValidationMessage("Login.Failed")%>
 				<a href="<%=CurrentItem.RegisterPage.Url%>"><%=CurrentItem.RegisterPage.Title%></a>
 			</div>
