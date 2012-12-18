@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNet.Membership.OpenAuth;
 using N2.Details;
 using N2.Integrity;
 using N2.Web.UI.WebControls;
@@ -58,5 +61,10 @@ namespace N2.Templates.Mvc.Models.Parts
 			get { return (ContentItem) GetDetail("LoginPage"); }
 			set { SetDetail("LoginPage", value); }
 		}
+
+    public IEnumerable<ProviderDetails> GetProviderNames()
+    {
+      return OpenAuth.AuthenticationClients.GetAll();
+    }
 	}
 }
