@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using System.Web.Security;
+using Microsoft.AspNet.Membership.OpenAuth;
 using N2.Templates.Mvc.Models.Parts;
 using N2.Templates.Mvc.Models;
 using N2.Web;
@@ -37,6 +38,12 @@ namespace N2.Templates.Mvc.Controllers
 			}
 			return ViewParentPage();
 		}
+
+    public ActionResult SignUpWithOAuth(string provider)
+    {
+      OpenAuth.RequestAuthentication(provider, ViewParentPage().Page.Url);
+      return ViewParentPage();
+    }
 
 		public ActionResult Logout()
 		{

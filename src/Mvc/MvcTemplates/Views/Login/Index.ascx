@@ -24,33 +24,27 @@
 				<input value="<%=GetLocalResourceObject("Login") %>" type="submit" />
 				<%=Html.ValidationMessage("Login.Failed")%>
                 <% if (CurrentItem.RegisterPage != null) { %>
-				<%= Html.ActionLink(CurrentItem.RegisterPage) %>
+				<%= Html.ActionLink(CurrentItem.RegisterPage) %>             
                 <% } %>
 			</div>
 			<%}%>
 			<%}%>
 		</div>
 	</div>
+    <%if(!Model.LoggedIn){%>
     <div class ="box">
+        <div class="inner">
+        Sign up with:
+        <%using (Html.BeginForm("SignUpWithOAuth", "Login", FormMethod.Post))
+            {%>
         <%foreach(var item in Model.CurrentItem.GetProviderNames()){%>
         <button type="submit" name="provider" value="<%= item.ProviderName %>"
-                     title="Log in using your <%= item.ProviderDisplayName %> account.">
-                     <%= item.ProviderDisplayName %>
-                 </button>
+                        title="Log in using your <%= item.ProviderDisplayName %> account.">
+                        <%= item.ProviderDisplayName %>
+                    </button>
         <%}%>
-
-<%--          <asp:ListView runat="server" ID="providerDetails" ItemType="Microsoft.AspNet.Membership.OpenAuth.ProviderDetails"
-             ViewStateMode="Disabled" SelectMethod="CurrentItem.GetProviderNames">
-             <ItemTemplate>
-                 <button type="submit" name="provider" value="<%#: Item.ProviderName %>"
-                     title="Log in using your <%#: Item.ProviderDisplayName %> account.">
-                     <%#: Item.ProviderDisplayName %>
-                 </button>
-             </ItemTemplate>
-             <EmptyDataTemplate>
-                 <p>There are no external authentication services configured. </p>
-
-             </EmptyDataTemplate>
-         </asp:ListView>--%>
+        <%}%>
+        </div>
     </div>
+    <%}%>
 </div>
